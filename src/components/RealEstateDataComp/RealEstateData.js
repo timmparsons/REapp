@@ -30,7 +30,7 @@ class RealEstateData extends React.Component {
       method: 'GET',
       headers: {
         'accept': 'application/json',
-        'apiKey': 'cffa697be9d767583e0ecc8cf6f32b87'
+        'apiKey': 'APIKEY'
       }
     })
     .then(response => response.json())
