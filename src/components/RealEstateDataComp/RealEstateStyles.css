@@ -1,0 +1,10 @@
+.realEstateDataLeft {
+  float: left;
+}
+
+.listStyles {
+  color: red;
+  font-size: 16px;
+  padding: 10px;
+  list-style-type: none;
+}

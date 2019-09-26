@@ -1,6 +1,6 @@
 import React from 'react';
 import RealEstateSearch from './RealEstateSearch'
-// const url = 'https://api.gateway.attomdata.com/propertyapi/v1.0.0'
+import './RealEstateStyles.css'
 
 class RealEstateData extends React.Component {
   constructor(props) {
@@ -43,10 +43,16 @@ class RealEstateData extends React.Component {
 
   render() {
       return (
-      <div>
+      <div className="realEstateDataLeft">
         <form onSubmit={this.handleSubmit}>
+          <div>
           <label>Enter Zipcode here:</label>
           <input value={this.state.zipcode} onChange={this.handleChange} />
+          </div>   
+          <div>
+            <label>Number of results:</label>
+            <input/>
+          </div>
           <button type='submit'>Submit!</button>
         </form>
         <RealEstateSearch address={this.state.address} />
