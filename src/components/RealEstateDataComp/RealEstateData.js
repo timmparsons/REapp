@@ -7,8 +7,7 @@ class RealEstateData extends React.Component {
     super(props)
     this.state = {
       zipcode: '',
-      address: '',
-      id: ''
+      address: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -26,33 +25,31 @@ class RealEstateData extends React.Component {
     this.setState({
       zipcode: this.state.zipcode
     })
-    fetch(`https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/address?postalcode=${this.state.zipcode}&page=1&pagesize=100`, {
+    fetch(`https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/address?postalcode=${this.state.zipcode}&page=1&pagesize=5`, {
       method: 'GET',
       headers: {
         'accept': 'application/json',
-        'apiKey': 'APIKEY'
+        'apiKey': 'cffa697be9d767583e0ecc8cf6f32b87'
       }
     })
     .then(response => response.json())
-    .then((data) => {
-      console.log(data.property[2].address.oneLine)
+    .then(data => {
+      let propertyAddress = data;
       this.setState({
-        address: data.property
+        address: propertyAddress.property
       })
     })
   }
 
   render() {
-    return (
+      return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>Enter Zipcode here:</label>
           <input value={this.state.zipcode} onChange={this.handleChange} />
           <button type='submit'>Submit!</button>
         </form>
-        {this.state.address ? this.state.address.map((data, index) => 
-          <RealEstateSearch key={index} address={data}/>
-        ) : "No data"}
+        <RealEstateSearch address={this.state.address} />
       </div>
     )
   }
@@ -60,23 +57,3 @@ class RealEstateData extends React.Component {
 
 export default RealEstateData;
 
-
-// fetchData() {
-//   fetch(`https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/address?postalcode=${this.state.zipcode}&page=1&pagesize=100`
-//     , {
-//     method: 'GET',
-//     headers: {
-//       'Accept': 'application/json',
-//       'apiKey': 'cffa697be9d767583e0ecc8cf6f32b87'
-//     }
-//   })
-//   .then(res => res.json())
-//   .then((data) => {
-//     this.setState({
-//       zipcode: '',
-//       address: {data}
-//     })
-//     console.log(data)
-//   })
-//   .catch(error => console.log(error))
-// }

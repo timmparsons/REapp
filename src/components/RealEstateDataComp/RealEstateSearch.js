@@ -1,15 +1,13 @@
 import React from 'react';
 
-
-class RealEstateSearch extends React.Component {
-  render () {
-    return (
-      <div>
-        <h3>{this.props.address}</h3>
-      </div>
-    )
-  }
+const RealEstateSearch = (props) => {
+  return(
+    <div>
+      <ul>
+        {props.address.map((property, index) => <li key={index}>{property.address.oneLine.toString()}</li>)}
+      </ul>
+    </div>   
+  )
 }
-
 
 export default RealEstateSearch;
